@@ -6,140 +6,120 @@
     {
       "name": "Lord of the Drinks Powai",
       "rating": "4.3",
-      "reviews": null,
       "category": "Lounge bar",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Lord%20of%20the%20Drinks%20Powai"
     },
     {
       "name": "Grease Monkey",
       "rating": "4.1",
-      "reviews": null,
       "category": "Night club",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Grease%20Monkey"
     },
     {
       "name": "Exotica Banjara Hills",
       "rating": "4.3",
-      "reviews": null,
       "category": "North Indian restaurant",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Exotica%20Banjara%20Hills"
     },
     {
       "name": "Kissa coffee house",
       "rating": "4.5",
-      "reviews": null,
       "category": "Coffee shop",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Kissa%20coffee%20house"
     },
     {
       "name": "Conçu Jubilee Hills",
       "rating": "4.5",
-      "reviews": null,
       "category": "Cafe",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Con%C3%A7u%20Jubilee%20Hills"
     },
     {
       "name": "Cibo AS Cafe",
       "rating": "4.9",
-      "reviews": null,
       "category": "Cafe",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Cibo%20AS%20Cafe"
     },
     {
       "name": "Mandi Zone",
       "rating": "4.7",
-      "reviews": null,
       "category": "Family restaurant",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mandi%20Zone"
     },
     {
       "name": "Jimme's Kitchen",
       "rating": "4.1",
-      "reviews": null,
       "category": "Chinese restaurant",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Jimme%27s%20Kitchen"
     },
     {
       "name": "Mapro Garden",
       "rating": "4.2",
-      "reviews": null,
       "category": "Restaurant",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mapro%20Garden"
     },
     {
       "name": "Bookbar - Artisanal Coffee Bookstore and Pizza House",
       "rating": "4.5",
-      "reviews": null,
       "category": "Coffee shop",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bookbar%20-%20Artisanal%20Coffee%20Bookstore%20and%20Pizza%20House"
     },
     {
       "name": "Prem's Restaurant",
       "rating": "4.2",
-      "reviews": null,
       "category": "North Indian restaurant",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Prem%27s%20Restaurant"
     },
     {
       "name": "Dimora Dance & Kitchen",
       "rating": "4.0",
-      "reviews": null,
       "category": "Club",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Dimora%20Dance%20%26%20Kitchen"
     },
     {
       "name": "The Bake Factory",
       "rating": "4.2",
-      "reviews": null,
       "category": "Cafe",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=The%20Bake%20Factory"
     },
     {
       "name": "Quake Arena",
       "rating": "4.0",
-      "reviews": null,
       "category": "Arena",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Quake%20Arena"
     },
     {
       "name": "The Merchants",
       "rating": "4.7",
-      "reviews": null,
       "category": "Restaurant",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=The%20Merchants"
     },
     {
       "name": "Jai Hind Lunch Home, Hill Road",
       "rating": "4.2",
-      "reviews": null,
       "category": "Seafood restaurant",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Jai%20Hind%20Lunch%20Home%2C%20Hill%20Road"
     },
     {
       "name": "Bademiya - Colaba",
       "rating": "3.7",
-      "reviews": null,
       "category": "Kebab shop",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bademiya%20-%20Colaba"
     },
     {
       "name": "Yuhi",
       "rating": "3.9",
-      "reviews": null,
       "category": "Restaurant",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Yuhi"
     },
     {
       "name": "Panchali Bar And Restaurant",
       "rating": "4.1",
-      "reviews": null,
       "category": "North Indian restaurant",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Panchali%20Bar%20And%20Restaurant"
     },
     {
       "name": "XINJI Oriental Cuisine",
       "rating": "4.8",
-      "reviews": null,
       "category": "Restaurant",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=XINJI%20Oriental%20Cuisine"
     }

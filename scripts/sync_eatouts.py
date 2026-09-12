@@ -113,7 +113,6 @@ def parse_places(dom):
         name = html.unescape(name_match.group(1)).strip()
         texts = [html.unescape(t).strip() for t in re.findall(r">([^<>]{1,110})<", chunk[:4000])]
         rating = next((t for t in texts if re.fullmatch(r"[0-5]\.\d", t)), None)
-        reviews = next((t.strip("()") for t in texts if re.fullmatch(r"\([\d,]+\)", t)), None)
         category = next(
             (
                 t
@@ -128,7 +127,6 @@ def parse_places(dom):
             {
                 "name": name,
                 "rating": rating,
-                "reviews": reviews,
                 "category": category,
                 "mapsUrl": "https://www.google.com/maps/search/?api=1&query="
                 + urllib.parse.quote(name),
@@ -148,9 +146,8 @@ def build_cards_html(places, total):
         if place["category"]:
             meta_bits.append(f'<span class="eatout-category">{html.escape(place["category"])}</span>')
         if place["rating"]:
-            reviews = f' ({place["reviews"]})' if place["reviews"] else ""
             meta_bits.append(
-                f'<span class="eatout-rating">✦ {place["rating"]}{html.escape(reviews)} on Google</span>'
+                f'<span class="eatout-rating">✦ {place["rating"]} on Google</span>'
             )
         meta = f'<p class="eatout-meta">{"".join(meta_bits)}</p>' if meta_bits else ""
         cards.append(
