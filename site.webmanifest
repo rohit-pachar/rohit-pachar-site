@@ -1,0 +1,16 @@
+{
+  "id": "/",
+  "name": "Rohit Pachar — A life in progress",
+  "short_name": "Rohit Pachar",
+  "description": "Building things. Telling stories.",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
+  "display": "minimal-ui",
+  "background_color": "#f6f5ef",
+  "theme_color": "#24382f",
+  "icons": [
+    { "src": "assets/brand/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/brand/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
