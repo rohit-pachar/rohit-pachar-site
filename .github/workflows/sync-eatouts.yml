@@ -1,0 +1,30 @@
+name: Sync eatouts from Google Maps
+
+on:
+  schedule:
+    - cron: "17 */6 * * *" # every 6 hours
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Scrape the shared Google Maps list
+        run: python3 scripts/sync_eatouts.py
+
+      - name: Commit and push if the list changed
+        run: |
+          if git diff --quiet; then
+            echo "No changes — list is up to date."
+            exit 0
+          fi
+          git config user.name "eatouts-sync[bot]"
+          git config user.email "actions@github.com"
+          git add assets/data/eatouts.json index.html
+          git commit -m "Sync eatouts from Google Maps list"
+          git push
