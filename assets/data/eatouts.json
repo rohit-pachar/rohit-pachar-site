@@ -1,8 +1,14 @@
 {
   "listTitle": "Eatouts I had gone",
   "shareUrl": "https://maps.app.goo.gl/15Vi3PHz57bbX9aK9",
-  "totalPlaces": 56,
+  "totalPlaces": 57,
   "places": [
+    {
+      "name": "Madras Filter Coffee - Narketpally",
+      "rating": "4.1",
+      "category": "Cafe",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Madras%20Filter%20Coffee%20-%20Narketpally"
+    },
     {
       "name": "Lord of the Drinks Powai",
       "rating": "4.3",
@@ -116,12 +122,6 @@
       "rating": "4.1",
       "category": "North Indian restaurant",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Panchali%20Bar%20And%20Restaurant"
-    },
-    {
-      "name": "XINJI Oriental Cuisine",
-      "rating": "4.8",
-      "category": "Restaurant",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=XINJI%20Oriental%20Cuisine"
     }
   ]
 }
