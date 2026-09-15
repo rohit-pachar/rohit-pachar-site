@@ -1,8 +1,14 @@
 {
   "listTitle": "Eatouts I had gone",
   "shareUrl": "https://maps.app.goo.gl/15Vi3PHz57bbX9aK9",
-  "totalPlaces": 57,
+  "totalPlaces": 58,
   "places": [
+    {
+      "name": "Sky Village Family Dhaba",
+      "rating": "4.2",
+      "category": "Andhra restaurant",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Sky%20Village%20Family%20Dhaba"
+    },
     {
       "name": "Madras Filter Coffee - Narketpally",
       "rating": "4.1",
@@ -116,12 +122,6 @@
       "rating": "3.9",
       "category": "Restaurant",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Yuhi"
-    },
-    {
-      "name": "Panchali Bar And Restaurant",
-      "rating": "4.1",
-      "category": "North Indian restaurant",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Panchali%20Bar%20And%20Restaurant"
     }
   ]
 }
