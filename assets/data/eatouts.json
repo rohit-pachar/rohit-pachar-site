@@ -1,8 +1,14 @@
 {
   "listTitle": "Eatouts I had gone",
   "shareUrl": "https://maps.app.goo.gl/15Vi3PHz57bbX9aK9",
-  "totalPlaces": 60,
+  "totalPlaces": 61,
   "places": [
+    {
+      "name": "Lord of the Drinks Chennai",
+      "rating": "4.2",
+      "category": "Bar",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Lord%20of%20the%20Drinks%20Chennai"
+    },
     {
       "name": "Nithya Amirtham - Nungambakkam",
       "rating": "4.3",
@@ -116,12 +122,6 @@
       "rating": "4.7",
       "category": "Restaurant",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=The%20Merchants"
-    },
-    {
-      "name": "Jai Hind Lunch Home, Hill Road",
-      "rating": "4.2",
-      "category": "Seafood restaurant",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Jai%20Hind%20Lunch%20Home%2C%20Hill%20Road"
     }
   ]
 }
