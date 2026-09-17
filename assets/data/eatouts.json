@@ -1,8 +1,14 @@
 {
   "listTitle": "Eatouts I had gone",
   "shareUrl": "https://maps.app.goo.gl/15Vi3PHz57bbX9aK9",
-  "totalPlaces": 59,
+  "totalPlaces": 60,
   "places": [
+    {
+      "name": "Nithya Amirtham - Nungambakkam",
+      "rating": "4.3",
+      "category": "South Indian restaurant",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Nithya%20Amirtham%20-%20Nungambakkam"
+    },
     {
       "name": "Kumarakom The Restaurant",
       "rating": "3.8",
@@ -116,12 +122,6 @@
       "rating": "4.2",
       "category": "Seafood restaurant",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Jai%20Hind%20Lunch%20Home%2C%20Hill%20Road"
-    },
-    {
-      "name": "Bademiya - Colaba",
-      "rating": "3.7",
-      "category": "Kebab shop",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bademiya%20-%20Colaba"
     }
   ]
 }
