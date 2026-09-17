@@ -1,8 +1,14 @@
 {
   "listTitle": "Eatouts I had gone",
   "shareUrl": "https://maps.app.goo.gl/15Vi3PHz57bbX9aK9",
-  "totalPlaces": 58,
+  "totalPlaces": 59,
   "places": [
+    {
+      "name": "Kumarakom The Restaurant",
+      "rating": "3.8",
+      "category": "Kerala restaurant",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Kumarakom%20The%20Restaurant"
+    },
     {
       "name": "Sky Village Family Dhaba",
       "rating": "4.2",
@@ -116,12 +122,6 @@
       "rating": "3.7",
       "category": "Kebab shop",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bademiya%20-%20Colaba"
-    },
-    {
-      "name": "Yuhi",
-      "rating": "3.9",
-      "category": "Restaurant",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Yuhi"
     }
   ]
 }
