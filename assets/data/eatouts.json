@@ -1,8 +1,14 @@
 {
   "listTitle": "Eatouts I had gone",
   "shareUrl": "https://maps.app.goo.gl/15Vi3PHz57bbX9aK9",
-  "totalPlaces": 61,
+  "totalPlaces": 62,
   "places": [
+    {
+      "name": "Anjappar Chettinad Restaurant",
+      "rating": null,
+      "category": null,
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Anjappar%20Chettinad%20Restaurant"
+    },
     {
       "name": "Lord of the Drinks Chennai",
       "rating": null,
@@ -114,14 +120,8 @@
     {
       "name": "Quake Arena",
       "rating": null,
-      "category": null,
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Quake%20Arena"
-    },
-    {
-      "name": "The Merchants",
-      "rating": null,
       "category": "Collapse side panel",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=The%20Merchants"
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Quake%20Arena"
     }
   ]
 }
