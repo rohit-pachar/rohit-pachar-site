@@ -5,122 +5,122 @@
   "places": [
     {
       "name": "Lord of the Drinks Chennai",
-      "rating": "4.2",
-      "category": "Bar",
+      "rating": null,
+      "category": null,
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Lord%20of%20the%20Drinks%20Chennai"
     },
     {
       "name": "Nithya Amirtham - Nungambakkam",
-      "rating": "4.3",
-      "category": "South Indian restaurant",
+      "rating": null,
+      "category": null,
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Nithya%20Amirtham%20-%20Nungambakkam"
     },
     {
       "name": "Kumarakom The Restaurant",
-      "rating": "3.8",
-      "category": "Kerala restaurant",
+      "rating": null,
+      "category": null,
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Kumarakom%20The%20Restaurant"
     },
     {
       "name": "Sky Village Family Dhaba",
-      "rating": "4.2",
-      "category": "Andhra restaurant",
+      "rating": null,
+      "category": null,
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Sky%20Village%20Family%20Dhaba"
     },
     {
       "name": "Madras Filter Coffee - Narketpally",
-      "rating": "4.1",
-      "category": "Cafe",
+      "rating": null,
+      "category": null,
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Madras%20Filter%20Coffee%20-%20Narketpally"
     },
     {
       "name": "Lord of the Drinks Powai",
-      "rating": "4.3",
-      "category": "Lounge bar",
+      "rating": null,
+      "category": null,
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Lord%20of%20the%20Drinks%20Powai"
     },
     {
       "name": "Grease Monkey",
-      "rating": "4.1",
-      "category": "Night club",
+      "rating": null,
+      "category": null,
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Grease%20Monkey"
     },
     {
       "name": "Exotica Banjara Hills",
-      "rating": "4.3",
-      "category": "North Indian restaurant",
+      "rating": null,
+      "category": null,
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Exotica%20Banjara%20Hills"
     },
     {
       "name": "Kissa coffee house",
-      "rating": "4.5",
-      "category": "Coffee shop",
+      "rating": null,
+      "category": null,
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Kissa%20coffee%20house"
     },
     {
       "name": "Conçu Jubilee Hills",
-      "rating": "4.5",
-      "category": "Cafe",
+      "rating": null,
+      "category": null,
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Con%C3%A7u%20Jubilee%20Hills"
     },
     {
       "name": "Cibo AS Cafe",
-      "rating": "4.9",
-      "category": "Cafe",
+      "rating": null,
+      "category": null,
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Cibo%20AS%20Cafe"
     },
     {
       "name": "Mandi Zone",
-      "rating": "4.7",
-      "category": "Family restaurant",
+      "rating": null,
+      "category": null,
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mandi%20Zone"
     },
     {
       "name": "Jimme's Kitchen",
-      "rating": "4.1",
-      "category": "Chinese restaurant",
+      "rating": null,
+      "category": null,
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Jimme%27s%20Kitchen"
     },
     {
       "name": "Mapro Garden",
-      "rating": "4.2",
-      "category": "Restaurant",
+      "rating": null,
+      "category": null,
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mapro%20Garden"
     },
     {
       "name": "Bookbar - Artisanal Coffee Bookstore and Pizza House",
-      "rating": "4.4",
-      "category": "Coffee shop",
+      "rating": null,
+      "category": null,
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bookbar%20-%20Artisanal%20Coffee%20Bookstore%20and%20Pizza%20House"
     },
     {
       "name": "Prem's Restaurant",
-      "rating": "4.2",
-      "category": "North Indian restaurant",
+      "rating": null,
+      "category": null,
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Prem%27s%20Restaurant"
     },
     {
       "name": "Dimora Dance & Kitchen",
-      "rating": "4.0",
-      "category": "Club",
+      "rating": null,
+      "category": null,
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Dimora%20Dance%20%26%20Kitchen"
     },
     {
       "name": "The Bake Factory",
-      "rating": "4.2",
-      "category": "Cafe",
+      "rating": null,
+      "category": null,
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=The%20Bake%20Factory"
     },
     {
       "name": "Quake Arena",
-      "rating": "4.0",
-      "category": "Arena",
+      "rating": null,
+      "category": null,
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Quake%20Arena"
     },
     {
       "name": "The Merchants",
-      "rating": "4.7",
-      "category": "Restaurant",
+      "rating": null,
+      "category": "Collapse side panel",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=The%20Merchants"
     }
   ]
