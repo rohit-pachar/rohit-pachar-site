@@ -6,7 +6,7 @@
     {
       "name": "Anjappar Chettinad Restaurant",
       "rating": "4.0",
-      "category": "South Indian restaurant",
+      "category": "South Indian",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Anjappar%20Chettinad%20Restaurant"
     },
     {
@@ -18,19 +18,19 @@
     {
       "name": "Nithya Amirtham - Nungambakkam",
       "rating": "4.3",
-      "category": "South Indian restaurant",
+      "category": "South Indian",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Nithya%20Amirtham%20-%20Nungambakkam"
     },
     {
       "name": "Kumarakom The Restaurant",
       "rating": "3.8",
-      "category": "Kerala restaurant",
+      "category": "Keralan",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Kumarakom%20The%20Restaurant"
     },
     {
       "name": "Sky Village Family Dhaba",
       "rating": "4.2",
-      "category": "Andhra restaurant",
+      "category": "Andhra",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Sky%20Village%20Family%20Dhaba"
     },
     {
@@ -54,7 +54,7 @@
     {
       "name": "Exotica Banjara Hills",
       "rating": "4.3",
-      "category": "North Indian restaurant",
+      "category": "North Indian",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Exotica%20Banjara%20Hills"
     },
     {
@@ -78,13 +78,13 @@
     {
       "name": "Mandi Zone",
       "rating": "4.7",
-      "category": "Family restaurant",
+      "category": "Family-friendly",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mandi%20Zone"
     },
     {
       "name": "Jimme's Kitchen",
       "rating": "4.1",
-      "category": "Chinese restaurant",
+      "category": "Chinese",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Jimme%27s%20Kitchen"
     },
     {
@@ -102,7 +102,7 @@
     {
       "name": "Prem's Restaurant",
       "rating": "4.2",
-      "category": "North Indian restaurant",
+      "category": "North Indian",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Prem%27s%20Restaurant"
     },
     {
