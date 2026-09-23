@@ -1,8 +1,14 @@
 {
   "listTitle": "Eatouts I had gone",
   "shareUrl": "https://maps.app.goo.gl/15Vi3PHz57bbX9aK9",
-  "totalPlaces": 62,
+  "totalPlaces": 63,
   "places": [
+    {
+      "name": "House of Commons",
+      "rating": "4.2",
+      "category": "Bar & grill",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=House%20of%20Commons"
+    },
     {
       "name": "Anjappar Chettinad Restaurant",
       "rating": "4.0",
@@ -116,12 +122,6 @@
       "rating": "4.2",
       "category": "Cafe",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=The%20Bake%20Factory"
-    },
-    {
-      "name": "Quake Arena",
-      "rating": "4.0",
-      "category": "Arena",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Quake%20Arena"
     }
   ]
 }
