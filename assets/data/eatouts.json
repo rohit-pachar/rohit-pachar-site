@@ -1,8 +1,14 @@
 {
   "listTitle": "Eatouts I had gone",
   "shareUrl": "https://maps.app.goo.gl/15Vi3PHz57bbX9aK9",
-  "totalPlaces": 63,
+  "totalPlaces": 64,
   "places": [
+    {
+      "name": "Bob's Bar - Koramangala",
+      "rating": "4.2",
+      "category": "Bar",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bob%27s%20Bar%20-%20Koramangala"
+    },
     {
       "name": "House of Commons",
       "rating": "4.2",
@@ -116,12 +122,6 @@
       "rating": "4.0",
       "category": "Club",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Dimora%20Dance%20%26%20Kitchen"
-    },
-    {
-      "name": "The Bake Factory",
-      "rating": "4.2",
-      "category": "Cafe",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=The%20Bake%20Factory"
     }
   ]
 }
