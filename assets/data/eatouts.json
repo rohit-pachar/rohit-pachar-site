@@ -1,8 +1,14 @@
 {
   "listTitle": "Eatouts I had gone",
   "shareUrl": "https://maps.app.goo.gl/15Vi3PHz57bbX9aK9",
-  "totalPlaces": 66,
+  "totalPlaces": 67,
   "places": [
+    {
+      "name": "Swa Varhadi Misal",
+      "rating": "4.5",
+      "category": "Restaurant",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Swa%20Varhadi%20Misal"
+    },
     {
       "name": "Tomato's Nashik Restaurant & Bar",
       "rating": "4.1",
@@ -116,12 +122,6 @@
       "rating": "4.2",
       "category": "Restaurant",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mapro%20Garden"
-    },
-    {
-      "name": "Bookbar - Artisanal Coffee Bookstore and Pizza House",
-      "rating": "4.4",
-      "category": "Coffee shop",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bookbar%20-%20Artisanal%20Coffee%20Bookstore%20and%20Pizza%20House"
     }
   ]
 }
