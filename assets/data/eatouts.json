@@ -1,8 +1,14 @@
 {
   "listTitle": "Eatouts I had gone",
   "shareUrl": "https://maps.app.goo.gl/15Vi3PHz57bbX9aK9",
-  "totalPlaces": 69,
+  "totalPlaces": 70,
   "places": [
+    {
+      "name": "GOOD FLIPPIN' BURGERS® - Viviana Mall",
+      "rating": "4.8",
+      "category": "Hamburger restaurant",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=GOOD%20FLIPPIN%27%20BURGERS%C2%AE%20-%20Viviana%20Mall"
+    },
     {
       "name": "Jai Hind Lunch Home, Dadar, Opp Kohinoor Inst.",
       "rating": "4.5",
@@ -116,12 +122,6 @@
       "rating": "4.9",
       "category": "Cafe",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Cibo%20AS%20Cafe"
-    },
-    {
-      "name": "Mandi Zone",
-      "rating": "4.7",
-      "category": "Family restaurant",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mandi%20Zone"
     }
   ]
 }
