@@ -1,8 +1,14 @@
 {
   "listTitle": "Eatouts I had gone",
   "shareUrl": "https://maps.app.goo.gl/15Vi3PHz57bbX9aK9",
-  "totalPlaces": 70,
+  "totalPlaces": 71,
   "places": [
+    {
+      "name": "Fusion Dhaba",
+      "rating": "4.0",
+      "category": "North Indian restaurant",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Fusion%20Dhaba"
+    },
     {
       "name": "GOOD FLIPPIN' BURGERS® - Viviana Mall",
       "rating": "4.8",
@@ -116,12 +122,6 @@
       "rating": "4.5",
       "category": "Cafe",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Con%C3%A7u%20Jubilee%20Hills"
-    },
-    {
-      "name": "Cibo AS Cafe",
-      "rating": "4.9",
-      "category": "Cafe",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Cibo%20AS%20Cafe"
     }
   ]
 }
