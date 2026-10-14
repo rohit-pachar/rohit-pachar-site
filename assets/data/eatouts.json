@@ -1,8 +1,14 @@
 {
   "listTitle": "Eatouts I had gone",
   "shareUrl": "https://maps.app.goo.gl/15Vi3PHz57bbX9aK9",
-  "totalPlaces": 72,
+  "totalPlaces": 73,
   "places": [
+    {
+      "name": "Kake Da Hotel Andheri",
+      "rating": "4.6",
+      "category": "North Indian restaurant",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Kake%20Da%20Hotel%20Andheri"
+    },
     {
       "name": "Banana Leaf Restaurant",
       "rating": "4.0",
@@ -116,12 +122,6 @@
       "rating": "4.3",
       "category": "North Indian restaurant",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Exotica%20Banjara%20Hills"
-    },
-    {
-      "name": "Kissa coffee house",
-      "rating": "4.5",
-      "category": "Coffee shop",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Kissa%20coffee%20house"
     }
   ]
 }
