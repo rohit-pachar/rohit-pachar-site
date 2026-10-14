@@ -1,8 +1,14 @@
 {
   "listTitle": "Eatouts I had gone",
   "shareUrl": "https://maps.app.goo.gl/15Vi3PHz57bbX9aK9",
-  "totalPlaces": 71,
+  "totalPlaces": 72,
   "places": [
+    {
+      "name": "Banana Leaf Restaurant",
+      "rating": "4.0",
+      "category": "South Indian restaurant",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Banana%20Leaf%20Restaurant"
+    },
     {
       "name": "Fusion Dhaba",
       "rating": "4.0",
@@ -116,12 +122,6 @@
       "rating": "4.5",
       "category": "Coffee shop",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Kissa%20coffee%20house"
-    },
-    {
-      "name": "Conçu Jubilee Hills",
-      "rating": "4.5",
-      "category": "Cafe",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Con%C3%A7u%20Jubilee%20Hills"
     }
   ]
 }
