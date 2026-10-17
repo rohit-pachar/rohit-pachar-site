@@ -1,8 +1,14 @@
 {
   "listTitle": "Eatouts I had gone",
   "shareUrl": "https://maps.app.goo.gl/15Vi3PHz57bbX9aK9",
-  "totalPlaces": 73,
+  "totalPlaces": 74,
   "places": [
+    {
+      "name": "Baati Chokha Restaurant",
+      "rating": "4.2",
+      "category": "Dhaba",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Baati%20Chokha%20Restaurant"
+    },
     {
       "name": "Kake Da Hotel Andheri",
       "rating": "4.6",
@@ -116,12 +122,6 @@
       "rating": "4.1",
       "category": "Night club",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Grease%20Monkey"
-    },
-    {
-      "name": "Exotica Banjara Hills",
-      "rating": "4.3",
-      "category": "North Indian restaurant",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Exotica%20Banjara%20Hills"
     }
   ]
 }
