@@ -1,8 +1,20 @@
 {
   "listTitle": "Eatouts I had gone",
   "shareUrl": "https://maps.app.goo.gl/15Vi3PHz57bbX9aK9",
-  "totalPlaces": 74,
+  "totalPlaces": 76,
   "places": [
+    {
+      "name": "Ganga & Grain",
+      "rating": "5.0",
+      "category": "Cafe",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Ganga%20%26%20Grain"
+    },
+    {
+      "name": "Restaurant UP-65",
+      "rating": "4.3",
+      "category": "North Indian restaurant",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Restaurant%20UP-65"
+    },
     {
       "name": "Baati Chokha Restaurant",
       "rating": "4.2",
@@ -110,18 +122,6 @@
       "rating": "4.1",
       "category": "Cafe",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Madras%20Filter%20Coffee%20-%20Narketpally"
-    },
-    {
-      "name": "Lord of the Drinks Powai",
-      "rating": "4.3",
-      "category": "Lounge bar",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Lord%20of%20the%20Drinks%20Powai"
-    },
-    {
-      "name": "Grease Monkey",
-      "rating": "4.1",
-      "category": "Night club",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Grease%20Monkey"
     }
   ]
 }
