@@ -1,8 +1,14 @@
 {
   "listTitle": "Eatouts I had gone",
   "shareUrl": "https://maps.app.goo.gl/15Vi3PHz57bbX9aK9",
-  "totalPlaces": 76,
+  "totalPlaces": 77,
   "places": [
+    {
+      "name": "URGA RESTAURANT & CAFE",
+      "rating": "4.2",
+      "category": "North Indian restaurant",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=URGA%20RESTAURANT%20%26%20CAFE"
+    },
     {
       "name": "Ganga & Grain",
       "rating": "5.0",
@@ -116,12 +122,6 @@
       "rating": "4.2",
       "category": "Andhra restaurant",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Sky%20Village%20Family%20Dhaba"
-    },
-    {
-      "name": "Madras Filter Coffee - Narketpally",
-      "rating": "4.1",
-      "category": "Cafe",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Madras%20Filter%20Coffee%20-%20Narketpally"
     }
   ]
 }
