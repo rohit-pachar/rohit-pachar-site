@@ -1,8 +1,20 @@
 {
   "listTitle": "Eatouts I had gone",
   "shareUrl": "https://maps.app.goo.gl/15Vi3PHz57bbX9aK9",
-  "totalPlaces": 77,
+  "totalPlaces": 79,
   "places": [
+    {
+      "name": "Bikanervala",
+      "rating": "4.0",
+      "category": "Coffee shop",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bikanervala"
+    },
+    {
+      "name": "Blue Lassi Shop",
+      "rating": "4.0",
+      "category": "Juice shop",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Blue%20Lassi%20Shop"
+    },
     {
       "name": "URGA RESTAURANT & CAFE",
       "rating": "4.2",
@@ -110,18 +122,6 @@
       "rating": "4.3",
       "category": "South Indian restaurant",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Nithya%20Amirtham%20-%20Nungambakkam"
-    },
-    {
-      "name": "Kumarakom The Restaurant",
-      "rating": "3.8",
-      "category": "Kerala restaurant",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Kumarakom%20The%20Restaurant"
-    },
-    {
-      "name": "Sky Village Family Dhaba",
-      "rating": "4.2",
-      "category": "Andhra restaurant",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Sky%20Village%20Family%20Dhaba"
     }
   ]
 }
