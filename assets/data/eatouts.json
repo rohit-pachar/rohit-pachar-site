@@ -1,8 +1,20 @@
 {
   "listTitle": "Eatouts I had gone",
   "shareUrl": "https://maps.app.goo.gl/15Vi3PHz57bbX9aK9",
-  "totalPlaces": 79,
+  "totalPlaces": 81,
   "places": [
+    {
+      "name": "Effingut Brewpub Gurugram - India's most loved craft brew pub",
+      "rating": "4.6",
+      "category": "Brewery",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Effingut%20Brewpub%20Gurugram%20-%20India%27s%20most%20loved%20craft%20brew%20pub"
+    },
+    {
+      "name": "Brewocrat - Brewery Skybar & Kitchen",
+      "rating": "4.4",
+      "category": "Brewpub",
+      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Brewocrat%20-%20Brewery%20Skybar%20%26%20Kitchen"
+    },
     {
       "name": "Bikanervala",
       "rating": "4.0",
@@ -95,7 +107,7 @@
     },
     {
       "name": "Bob's Bar - Koramangala",
-      "rating": "4.2",
+      "rating": "4.3",
       "category": "Bar",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bob%27s%20Bar%20-%20Koramangala"
     },
@@ -110,18 +122,6 @@
       "rating": "4.0",
       "category": "South Indian restaurant",
       "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Anjappar%20Chettinad%20Restaurant"
-    },
-    {
-      "name": "Lord of the Drinks Chennai",
-      "rating": "4.2",
-      "category": "Bar",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Lord%20of%20the%20Drinks%20Chennai"
-    },
-    {
-      "name": "Nithya Amirtham - Nungambakkam",
-      "rating": "4.3",
-      "category": "South Indian restaurant",
-      "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Nithya%20Amirtham%20-%20Nungambakkam"
     }
   ]
 }
