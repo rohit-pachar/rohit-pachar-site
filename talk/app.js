@@ -106,7 +106,29 @@
   }
 
   // ------------------------------------------------------------ audio out
+  // iOS Safari plays Web Audio through the "ambient" session, which the ring/silent switch
+  // mutes. With the mic on it becomes play-and-record (not muted), so voice worked after
+  // Start but chip clicks before Start were silent. Ask for a media-playback session instead.
+  function setAudioSession(type) {
+    try { if (navigator.audioSession) navigator.audioSession.type = type; } catch {}
+  }
+  let unlocked = false;
+  function unlockMediaPlayback() {
+    if (unlocked) return;
+    unlocked = true;
+    setAudioSession("playback");
+    // Older iOS (no navigator.audioSession): playing any <audio> element during the tap
+    // switches the page to the playback category for the rest of the session.
+    try {
+      const a = new Audio("data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=");
+      a.setAttribute("playsinline", "");
+      a.volume = 0;
+      a.play().catch(() => {});
+    } catch {}
+  }
+
   async function ensurePlayback() {
+    unlockMediaPlayback();
     if (!playCtx || playCtx.state === "closed") {
       playCtx = new (window.AudioContext || window.webkitAudioContext)();
       outGain = playCtx.createGain();
@@ -178,6 +200,7 @@
   }
 
   async function startMic() {
+    setAudioSession("play-and-record");
     const stream = await navigator.mediaDevices.getUserMedia({
       audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 },
     });
@@ -206,6 +229,7 @@
   }
 
   function stopMic() {
+    if (unlocked) setAudioSession("playback");
     micOn = false;
     micLevel = 0;
     if (micStream) micStream.getTracks().forEach((t) => t.stop());
