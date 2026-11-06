@@ -223,6 +223,9 @@
     if (ws && ws.readyState !== WebSocket.OPEN) { try { ws.close(); } catch {} ws = null; }
     return new Promise((resolve, reject) => {
       setState("connecting");
+      // The server numbers turns from 1 on every connection, so per-turn state from the
+      // last connection must go, or new replies get dropped as "already cancelled".
+      cancelledUpTo = 0; currentTurn = 0; turnEnded.clear(); bot.clear(); partialEl = null;
       const sock = new WebSocket(wsUrl);
       ws = sock;
       sock.binaryType = "arraybuffer";
