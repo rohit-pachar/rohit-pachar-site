@@ -92,6 +92,8 @@
     .msg .t { font-size: 15.5px; color: var(--ink); white-space: pre-wrap; }
     .msg.you .t { color: var(--you); }
     .msg.partial .t { opacity: .55; }
+    .msg.sys .who { display: none; }
+    .msg.sys .t { color: var(--ink-3); font-size: 14px; font-style: italic; }
     .msg.cut .t::after { content: " — interrupted"; color: var(--ink-3); font-size: 13px; }
     @keyframes rise { from { opacity: 0; transform: translateY(6px); } }
     .empty { color: var(--ink-3); font-size: 14px; }

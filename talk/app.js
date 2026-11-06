@@ -102,15 +102,21 @@
   }
 
   // ------------------------------------------------------------ audio out
-  function ensurePlayback() {
-    if (playCtx) return playCtx.resume();
-    playCtx = new (window.AudioContext || window.webkitAudioContext)();
-    outGain = playCtx.createGain();
-    outAnalyser = playCtx.createAnalyser();
-    outAnalyser.fftSize = 512;
-    outGain.connect(outAnalyser);
-    outAnalyser.connect(playCtx.destination);
-    return playCtx.resume();
+  async function ensurePlayback() {
+    if (!playCtx || playCtx.state === "closed") {
+      playCtx = new (window.AudioContext || window.webkitAudioContext)();
+      outGain = playCtx.createGain();
+      outAnalyser = playCtx.createAnalyser();
+      outAnalyser.fftSize = 512;
+      outGain.connect(outAnalyser);
+      outAnalyser.connect(playCtx.destination);
+    }
+    // After the tab sits idle the browser may suspend audio; resume, but never hang on it.
+    if (playCtx.state !== "running") await withTimeout(playCtx.resume(), 2000).catch(() => {});
+  }
+
+  function withTimeout(promise, ms, message) {
+    return Promise.race([promise, new Promise((_, rej) => setTimeout(() => rej(new Error(message || "timeout")), ms))]);
   }
 
   function playPcm(turn, bytes) {
@@ -150,69 +156,104 @@
   }
 
   // ------------------------------------------------------------ mic in
+  // One AudioContext with the worklet loaded, created once and reused for every session.
+  // (Creating/closing a context per click raced with double-clicks and broke the mic.)
+  let micCtxReady = null;
+  let micSrc = null;
+
+  function getMicCtx() {
+    if (!micCtxReady) {
+      micCtxReady = (async () => {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        await ctx.audioWorklet.addModule(new URL("mic-worklet.js", SCRIPT_URL).href);
+        return ctx;
+      })();
+      micCtxReady.catch(() => { micCtxReady = null; }); // allow a retry
+    }
+    return micCtxReady;
+  }
+
   async function startMic() {
-    micStream = await navigator.mediaDevices.getUserMedia({
+    const stream = await navigator.mediaDevices.getUserMedia({
       audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 },
     });
-    micCtx = new (window.AudioContext || window.webkitAudioContext)();
-    await micCtx.audioWorklet.addModule(new URL("mic-worklet.js", SCRIPT_URL).href);
-    const srcNode = micCtx.createMediaStreamSource(micStream);
-    micNode = new AudioWorkletNode(micCtx, "mic-processor");
-    micNode.port.onmessage = ({ data }) => {
-      micLevel = muted ? 0 : Math.min(1, data.rms * 6);
-      if (!muted && ws && ws.readyState === 1) ws.send(data.pcm);
-    };
-    srcNode.connect(micNode);
-    // Worklets only run when connected to the graph; route through a silent gain.
-    const sink = micCtx.createGain();
-    sink.gain.value = 0;
-    micNode.connect(sink).connect(micCtx.destination);
-    micOn = true;
-    ui.mute.disabled = false;
+    try {
+      const ctx = await getMicCtx();
+      if (ctx.state === "closed") { micCtxReady = null; throw new Error("audio context closed"); }
+      if (ctx.state !== "running") await withTimeout(ctx.resume(), 2000).catch(() => {});
+      const src = ctx.createMediaStreamSource(stream);
+      const node = new AudioWorkletNode(ctx, "mic-processor");
+      node.port.onmessage = ({ data }) => {
+        micLevel = muted ? 0 : Math.min(1, data.rms * 6);
+        if (!muted && ws && ws.readyState === 1) ws.send(data.pcm);
+      };
+      src.connect(node);
+      // Worklets only run when connected to the graph; route through a silent gain.
+      const sink = ctx.createGain();
+      sink.gain.value = 0;
+      node.connect(sink).connect(ctx.destination);
+      micCtx = ctx; micStream = stream; micSrc = src; micNode = node;
+      micOn = true;
+      ui.mute.disabled = false;
+    } catch (err) {
+      stream.getTracks().forEach((t) => t.stop());
+      throw err;
+    }
   }
 
   function stopMic() {
     micOn = false;
     micLevel = 0;
     if (micStream) micStream.getTracks().forEach((t) => t.stop());
-    if (micCtx) micCtx.close();
-    micStream = micCtx = micNode = null;
+    if (micNode) { micNode.port.onmessage = null; try { micNode.disconnect(); } catch {} }
+    if (micSrc) { try { micSrc.disconnect(); } catch {} }
+    micStream = micNode = micSrc = null; // the context itself is kept for the next start
     ui.mute.disabled = true;
     muted = false;
     ui.mute.setAttribute("aria-pressed", "false");
   }
 
   // ------------------------------------------------------------ socket
+  function socketOpen() {
+    return ws && ws.readyState === WebSocket.OPEN;
+  }
+
   function connect({ greet }) {
+    // Drop a socket that died while the tab was idle.
+    if (ws && ws.readyState !== WebSocket.OPEN) { try { ws.close(); } catch {} ws = null; }
     return new Promise((resolve, reject) => {
       setState("connecting");
-      ws = new WebSocket(wsUrl);
-      ws.binaryType = "arraybuffer";
-      ws.onopen = () => {
-        ws.send(JSON.stringify({ type: "hello", greet }));
+      const sock = new WebSocket(wsUrl);
+      ws = sock;
+      sock.binaryType = "arraybuffer";
+      const timer = setTimeout(() => { try { sock.close(); } catch {} reject(new Error("unreachable")); }, 10000);
+      sock.onopen = () => {
+        clearTimeout(timer);
+        sock.send(JSON.stringify({ type: "hello", greet }));
         startedAt = Date.now();
         clearInterval(timerHandle);
         timerHandle = setInterval(tickTimer, 1000);
         setState("listening");
         resolve();
       };
-      ws.onerror = () => reject(new Error("Could not reach the voice server."));
-      ws.onclose = (e) => {
-        const wasLive = state !== "idle";
+      sock.onerror = () => { clearTimeout(timer); reject(new Error("unreachable")); };
+      sock.onclose = (e) => {
+        clearTimeout(timer);
+        if (ws !== sock) return; // an older socket closing late: leave the current one alone
+        const wasLive = micOn || state === "speaking" || state === "thinking";
         ws = null;
         clearInterval(timerHandle);
         stopPlayback();
         stopMic();
         setTalkButton(false);
         setState("idle");
-        if (wasLive && e.code !== 1000) {
-          const why = e.code === 4403 ? "This page isn't allowed to use the voice server." :
-                      e.code === 4429 ? "Lots of people are talking to me right now. Try again in a minute." :
-                      "Connection closed.";
-          addMsg("sys", why);
-        }
+        if (e.code === 4408) note("I paused after a few quiet minutes. Press Start to keep talking.");
+        else if (e.code === 4403) note("This page isn't allowed to use the voice server.");
+        else if (e.code === 4429) note("Lots of people are talking to me right now. Try again in a minute.");
+        else if (wasLive && e.code !== 1000) note("The connection dropped. Press Start to pick up again.");
       };
-      ws.onmessage = (ev) => {
+      sock.onmessage = (ev) => {
+        if (ws !== sock) return;
         if (typeof ev.data !== "string") {
           const turn = new DataView(ev.data).getUint32(0, true);
           playPcm(turn, ev.data.slice(4));
@@ -221,6 +262,12 @@
         handle(JSON.parse(ev.data));
       };
     });
+  }
+
+  // Friendly system notes; the raw error goes to the console for debugging.
+  function note(text, err) {
+    if (err) console.error(err);
+    addMsg("sys", text);
   }
 
   function handle(m) {
@@ -293,23 +340,40 @@
     ui.talkLabel.innerHTML = live ? "End <span class=\"label-long\">conversation</span>" : "Start <span class=\"label-long\">talking</span>";
   }
 
+  let starting = false;
+
   async function startTalking() {
+    if (starting) return; // ignore double clicks while the mic/socket come up
+    starting = true;
+    ui.talk.disabled = true;
+    setState("connecting");
     try {
+      if (!navigator.mediaDevices?.getUserMedia) throw Object.assign(new Error("no mic api"), { name: "NoMicApi" });
       await ensurePlayback();
-      if (!navigator.mediaDevices?.getUserMedia) throw new Error("This browser can't use the microphone here (it needs HTTPS).");
       await startMic();
-      if (!ws) await connect({ greet: true });
+      if (!socketOpen()) await connect({ greet: true });
       setTalkButton(true);
       setState("listening");
     } catch (err) {
       stopMic();
-      setState("error");
-      addMsg("sys", err.name === "NotAllowedError" ? "Microphone access was blocked. You can still type below." : err.message || String(err));
+      setTalkButton(false);
+      setState("idle");
+      if (err.name === "NotAllowedError") note("Microphone access is blocked. Allow it in the address bar, or type below.", err);
+      else if (err.name === "NotFoundError") note("I couldn't find a microphone. You can still type below.", err);
+      else if (err.name === "NoMicApi") note("This browser can't use the microphone here. You can still type below.", err);
+      else if (err.message === "unreachable") note("I can't reach the voice server right now. Please try again in a moment.", err);
+      else note("Something went wrong starting the mic. Please press Start again.", err);
+    } finally {
+      starting = false;
+      ui.talk.disabled = false;
     }
   }
 
   function endConversation() {
-    if (ws) ws.close(1000);
+    const sock = ws;
+    ws = null;
+    if (sock) sock.close(1000);
+    clearInterval(timerHandle);
     stopMic();
     stopPlayback();
     setTalkButton(false);
@@ -322,16 +386,24 @@
     if (!text) return;
     try {
       await ensurePlayback();
-      if (!ws) await connect({ greet: false });
+      if (!socketOpen()) await connect({ greet: false });
       stopPlayback();
       ws.send(JSON.stringify({ type: "text", text }));
     } catch (err) {
-      setState("error");
-      addMsg("sys", err.message || String(err));
+      setState("idle");
+      note("I can't reach the voice server right now. Please try again in a moment.", err);
     }
   }
 
   ui.talk.onclick = () => (micOn ? endConversation() : startTalking());
+  // Coming back to the tab: if the socket died meanwhile, reset the UI so Start works first time.
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible" && ws && ws.readyState !== WebSocket.OPEN && ws.readyState !== WebSocket.CONNECTING) {
+      const sock = ws; ws = null;
+      try { sock.close(); } catch {}
+      stopMic(); stopPlayback(); setTalkButton(false); setState("idle");
+    }
+  });
   ui.mute.onclick = () => {
     muted = !muted;
     ui.mute.setAttribute("aria-pressed", String(muted));
