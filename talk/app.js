@@ -90,7 +90,7 @@
     ui.chips.innerHTML = "";
     QUESTIONS.forEach(([label, q], i) => {
       const b = document.createElement("button");
-      b.className = "chip";
+      b.className = "chip interactive";
       b.type = "button";
       b.title = q;
       b.innerHTML = `<span class="n">0${i + 1}</span><span class="l"></span><span class="arr" aria-hidden="true">→</span>`;
@@ -401,6 +401,15 @@
       note("I can't reach the voice server right now. Please try again in a moment.", err);
     }
   }
+
+  // Liquid-glass sheen: track the pointer over interactive glass so the highlight follows it.
+  document.addEventListener("pointermove", (e) => {
+    const el = e.target.closest && e.target.closest(".interactive");
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    el.style.setProperty("--mx", `${e.clientX - r.left}px`);
+    el.style.setProperty("--my", `${e.clientY - r.top}px`);
+  }, { passive: true });
 
   ui.talk.onclick = () => (micOn ? endConversation() : startTalking());
   // Coming back to the tab: if the socket died meanwhile, reset the UI so Start works first time.
