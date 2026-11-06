@@ -1,6 +1,10 @@
 (() => {
   "use strict";
 
+  // Resolve sibling files (the mic worklet) against this script, not the page URL:
+  // the page may be served as /talk or /talk/.
+  const SCRIPT_URL = (document.currentScript && document.currentScript.src) || document.baseURI;
+
   const QUESTIONS = [
     "What should we know about your life story in a few sentences?",
     "What's your #1 superpower?",
@@ -140,7 +144,7 @@
       audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 },
     });
     micCtx = new (window.AudioContext || window.webkitAudioContext)();
-    await micCtx.audioWorklet.addModule(new URL("mic-worklet.js", document.baseURI).href);
+    await micCtx.audioWorklet.addModule(new URL("mic-worklet.js", SCRIPT_URL).href);
     const srcNode = micCtx.createMediaStreamSource(micStream);
     micNode = new AudioWorkletNode(micCtx, "mic-processor");
     micNode.port.onmessage = ({ data }) => {
