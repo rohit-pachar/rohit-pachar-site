@@ -135,7 +135,8 @@
   }
 
   function afterPlayback() {
-    if (state === "speaking") setState(ws && ws.readyState === 1 ? "listening" : "idle");
+    // Brief gaps between sentences empty the queue too; only settle once the reply is complete.
+    if (state === "speaking" && turnEnded.has(currentTurn)) setState(ws && ws.readyState === 1 ? "listening" : "idle");
   }
 
   // ------------------------------------------------------------ mic in
@@ -266,7 +267,7 @@
       }
       case "turn_end":
         turnEnded.add(m.turn);
-        if (!sources.size && state !== "speaking" && m.turn === currentTurn) setState("listening");
+        if (!sources.size && m.turn === currentTurn && (state === "speaking" || state === "thinking")) setState("listening");
         break;
       case "error":
         addMsg("sys", m.message);
