@@ -5,12 +5,13 @@
   // the page may be served as /talk or /talk/.
   const SCRIPT_URL = (document.currentScript && document.currentScript.src) || document.baseURI;
 
+  // [short chip label, question actually asked]
   const QUESTIONS = [
-    "What should we know about your life story in a few sentences?",
-    "What's your #1 superpower?",
-    "What are the top 3 areas you'd like to grow in?",
-    "What misconception do your coworkers have about you?",
-    "How do you push your boundaries and limits?",
+    ["Your life story", "What should we know about your life story in a few sentences?"],
+    ["Your #1 superpower", "What's your #1 superpower?"],
+    ["Top 3 areas to grow", "What are the top 3 areas you'd like to grow in?"],
+    ["A misconception about you", "What misconception do your coworkers have about you?"],
+    ["Pushing your limits", "How do you push your boundaries and limits?"],
   ];
 
   const $ = (id) => document.getElementById(id);
@@ -51,7 +52,7 @@
   }
 
   // ------------------------------------------------------------ UI helpers
-  const LABELS = { idle: "Offline", connecting: "Connecting", listening: "Listening", thinking: "Thinking", speaking: "Speaking", error: "Error" };
+  const LABELS = { idle: "Ready", connecting: "Connecting", listening: "Listening", thinking: "Thinking", speaking: "Speaking", error: "Error" };
   function setState(s) {
     state = s;
     ui.status.dataset.s = s;
@@ -71,6 +72,7 @@
   function clearEmpty() {
     const e = ui.log.querySelector(".empty");
     if (e) e.remove();
+    document.body.classList.add("chatted");
   }
 
   function addMsg(who, text, cls = "") {
@@ -86,14 +88,16 @@
 
   function renderChips() {
     ui.chips.innerHTML = "";
-    for (const q of QUESTIONS) {
+    QUESTIONS.forEach(([label, q], i) => {
       const b = document.createElement("button");
       b.className = "chip";
       b.type = "button";
-      b.textContent = q;
+      b.title = q;
+      b.innerHTML = `<span class="n">0${i + 1}</span><span class="l"></span><span class="arr" aria-hidden="true">→</span>`;
+      b.querySelector(".l").textContent = label;
       b.onclick = () => ask(q);
       ui.chips.appendChild(b);
-    }
+    });
   }
 
   function tickTimer() {
