@@ -41,7 +41,14 @@
   let micLevel = 0, outLevel = 0;
   let startedAt = 0, timerHandle = null;
   let partialEl = null;
-  const botEls = new Map();
+  // Per bot turn: full text so far + when its audio started, so words can be revealed in
+  // step with the voice instead of all at once.
+  const bot = new Map(); // turn -> { el, text, startAt, audioSec, frozen }
+  function botTurn(turn) {
+    let b = bot.get(turn);
+    if (!b) { b = { el: null, text: "", startAt: null, audioSec: 0, frozen: false, shown: -1 }; bot.set(turn, b); }
+    return b;
+  }
 
   // ------------------------------------------------------------ UI helpers
   const LABELS = { idle: "Offline", connecting: "Connecting", listening: "Listening", thinking: "Thinking", speaking: "Speaking", error: "Error" };
@@ -119,6 +126,9 @@
     const at = Math.max(nextTime, playCtx.currentTime + 0.04);
     src.start(at);
     nextTime = at + buf.duration;
+    const b = botTurn(turn);
+    if (b.startAt === null) b.startAt = at;
+    b.audioSec = at + buf.duration - b.startAt;
     src._turn = turn;
     sources.add(src);
     setState("speaking");
@@ -246,29 +256,29 @@
       case "turn_start":
         currentTurn = m.turn;
         break;
-      case "bot_delta": {
-        if (m.turn <= cancelledUpTo) break;
-        let el = botEls.get(m.turn);
-        if (!el) { el = addMsg("rohit", ""); botEls.set(m.turn, el); }
-        const t = el.querySelector(".t");
-        t.textContent += m.text;
-        setCaption(t.textContent.trim(), "rohit");
-        ui.log.scrollTop = ui.log.scrollHeight;
+      case "bot_delta":
+        if (m.turn > cancelledUpTo) botTurn(m.turn).text += m.text;  // revealed by syncText()
         break;
-      }
       case "interrupt": {
         const wasPlaying = sources.size > 0 || !turnEnded.has(m.turn);
         cancelledUpTo = Math.max(cancelledUpTo, m.turn);
         stopPlayback();
-        const el = botEls.get(m.turn);
-        if (el && wasPlaying) el.classList.add("cut");
+        const b = bot.get(m.turn);
+        if (b) {
+          b.frozen = true;  // keep only what was actually heard
+          if (b.el && wasPlaying) b.el.classList.add("cut");
+        }
         if (state === "speaking") setState("listening");
         break;
       }
-      case "turn_end":
+      case "turn_end": {
         turnEnded.add(m.turn);
+        const b = bot.get(m.turn);
+        // No audio arrived (TTS failed): show the text anyway.
+        if (b && b.startAt === null && b.text && !b.frozen) { b.startAt = -1; renderBot(b, b.text); }
         if (!sources.size && m.turn === currentTurn && (state === "speaking" || state === "thinking")) setState("listening");
         break;
+      }
       case "error":
         addMsg("sys", m.message);
         if (state === "thinking") setState("listening");
@@ -338,6 +348,37 @@
     if (e.key === "Escape" && sources.size && ws) ws.send(JSON.stringify({ type: "interrupt" }));
   });
 
+  // ------------------------------------------------------------ text in sync with voice
+  const FALLBACK_CPS = 14; // en-IN Chirp3-HD speaks ~14 characters/second
+
+  function renderBot(b, text) {
+    if (!b.el) b.el = addMsg("rohit", "");
+    b.el.querySelector(".t").textContent = text;
+    setCaption(text.trim(), "rohit");
+    ui.log.scrollTop = ui.log.scrollHeight;
+  }
+
+  function syncText() {
+    if (!playCtx) return;
+    for (const [turn, b] of bot) {
+      if (b.frozen || b.startAt === null || b.startAt < 0 || !b.text) continue;
+      const played = Math.max(0, playCtx.currentTime - b.startAt);
+      let n;
+      if (turnEnded.has(turn) && b.audioSec > 0) {
+        // Whole reply known: map audio time to text proportionally.
+        n = played >= b.audioSec ? b.text.length : Math.floor(b.text.length * played / b.audioSec);
+      } else {
+        n = Math.floor(played * FALLBACK_CPS);
+      }
+      n = Math.min(n, b.text.length);
+      // Finish the word in progress rather than cutting it mid-way.
+      const sp = b.text.indexOf(" ", n);
+      n = sp === -1 ? (n > 0 ? b.text.length : 0) : sp;
+      if (n !== b.shown) { b.shown = n; renderBot(b, b.text.slice(0, n)); }
+      if (n >= b.text.length && turnEnded.has(turn)) b.startAt = -1; // done
+    }
+  }
+
   // ------------------------------------------------------------ visuals
   const ctx = ui.orb.getContext("2d");
   const bars = [...ui.meter.children];
@@ -402,6 +443,7 @@
       ctx.stroke();
     }
 
+    syncText();
     ui.portrait.style.transform = `scale(${1 + smooth * 0.035})`;
     bars.forEach((b, i) => {
       const v = micOn && !muted ? micLevel * (0.5 + 0.5 * Math.abs(Math.sin(phase * 4 + i))) : 0;
