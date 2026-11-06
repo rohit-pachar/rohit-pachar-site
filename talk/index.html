@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Talk to Rohit</title>
+  <meta name="description" content="A voice conversation with an AI version of Rohit Pachar: product builder, filmmaker, IIT Bombay '25." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Ccircle cx=%2232%22 cy=%2232%22 r=%2230%22 fill=%22%231b1813%22/%3E%3Ctext x=%2232%22 y=%2242%22 font-family=%22Georgia%22 font-size=%2228%22 text-anchor=%22middle%22 fill=%22%23f4efe6%22%3Erp%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* palette from rohitpachar.com: warm paper, forest-green ink, burnt orange */
+      --bg: #f6f5ef;
+      --bg-2: #efeee6;
+      --ink: #24382f;
+      --ink-2: #626960;
+      --ink-3: #8b9187;
+      --line: #d7dad0;
+      --accent: #b74628;
+      --accent-soft: #f0d2c4;
+      --you: #274d3a;
+      --card: #fffef9;
+      --shadow: 0 1px 0 rgba(36, 56, 47, .04), 0 12px 40px -18px rgba(36, 56, 47, .35);
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #121813; --bg-2: #1a211b; --ink: #eef0e6; --ink-2: #b3baa9; --ink-3: #7c8576;
+        --line: #2a332b; --accent: #e0714b; --accent-soft: #4d2416; --you: #a9cf9a; --card: #172019;
+        --shadow: 0 12px 40px -18px rgba(0,0,0,.8); color-scheme: dark;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #121813; --bg-2: #1a211b; --ink: #eef0e6; --ink-2: #b3baa9; --ink-3: #7c8576;
+        --line: #2a332b; --accent: #e0714b; --accent-soft: #4d2416; --you: #a9cf9a; --card: #172019;
+      --shadow: 0 12px 40px -18px rgba(0,0,0,.8); color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font: 400 16px/1.5 "Inter Tight", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+    .serif { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; }
+
+    .app { min-height: 100dvh; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr auto; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+    /* header */
+    header { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; border-bottom: 1px solid var(--line); }
+    .brand { display: flex; align-items: baseline; gap: 14px; color: inherit; text-decoration: none; }
+    .brand .logo { font-family: "Instrument Serif", serif; font-size: 30px; line-height: 1; }
+    .brand .logo i { color: var(--accent); font-style: normal; }
+    .status { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); }
+    .status .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ink-3); transition: background .2s; }
+    .status[data-s="listening"] .dot { background: var(--you); box-shadow: 0 0 0 4px color-mix(in srgb, var(--you) 20%, transparent); }
+    .status[data-s="thinking"] .dot { background: var(--ink-2); animation: blink 1s infinite; }
+    .status[data-s="speaking"] .dot { background: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent); }
+    .status[data-s="error"] .dot { background: #c0392b; }
+    @keyframes blink { 50% { opacity: .25; } }
+
+    /* main */
+    main { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 48px; padding: 40px 0 24px; min-height: 0; }
+    .stage { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; min-height: 0; }
+    .eyebrow { margin-bottom: 18px; }
+    h1 { font-family: "Instrument Serif", serif; font-weight: 400; font-size: clamp(44px, min(6.4vw, 9vh), 84px); line-height: .95; letter-spacing: -.01em; margin: 0 0 18px; }
+    h1 em { color: var(--accent); }
+    .lede { color: var(--ink-2); max-width: 46ch; margin: 0 0 28px; font-size: 17px; }
+    body.live .lede { display: none; }
+    body.live h1 { font-size: clamp(40px, min(5vw, 7vh), 64px); }
+
+    .orb-wrap { position: relative; width: min(260px, 56vw, 30vh); aspect-ratio: 1; margin: 6px 0 26px; }
+    .orb-wrap canvas { position: absolute; inset: -18%; width: 136%; height: 136%; }
+    .portrait { position: absolute; inset: 14%; border-radius: 50%; overflow: hidden; background: var(--bg-2); box-shadow: var(--shadow); transition: transform .25s ease; }
+    .portrait img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.15) contrast(1.02); }
+    .portrait .fallback { position: absolute; inset: 0; display: grid; place-items: center; font-family: "Instrument Serif", serif; font-size: 64px; color: var(--ink-2); }
+
+    .caption { min-height: 3.6em; max-width: 34ch; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; font-family: "Instrument Serif", serif; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.18; color: var(--ink); }
+    .caption.you { color: var(--you); font-style: italic; }
+    .caption .muted { color: var(--ink-3); }
+
+    /* transcript */
+    .side { display: flex; flex-direction: column; min-height: 0; border-left: 1px solid var(--line); padding-left: 40px; }
+    .side-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+    .log { flex: 1; overflow-y: auto; min-height: 220px; max-height: calc(100dvh - 330px); padding-right: 6px; scroll-behavior: smooth; }
+    .msg { margin: 0 0 18px; animation: rise .35s ease both; }
+    .msg .who { margin-bottom: 4px; }
+    .msg .t { font-size: 15.5px; color: var(--ink); white-space: pre-wrap; }
+    .msg.you .t { color: var(--you); }
+    .msg.partial .t { opacity: .55; }
+    .msg.cut .t::after { content: " — interrupted"; color: var(--ink-3); font-size: 13px; }
+    @keyframes rise { from { opacity: 0; transform: translateY(6px); } }
+    .empty { color: var(--ink-3); font-size: 14px; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; padding-top: 16px; border-top: 1px dashed var(--line); }
+    .chip { border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 999px; padding: 8px 14px; font: 500 13.5px "Inter Tight", sans-serif; cursor: pointer; transition: border-color .15s, transform .15s, background .15s; text-align: left; }
+    .chip:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .chip:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+
+    /* dock */
+    .dock { position: sticky; bottom: 0; padding: 14px 0 calc(18px + env(safe-area-inset-bottom)); background: linear-gradient(to top, var(--bg) 70%, transparent); }
+    .dock-inner { display: flex; align-items: center; gap: 12px; padding: 8px; border: 1px solid var(--line); background: var(--card); border-radius: 999px; box-shadow: var(--shadow); }
+    .talk { display: inline-flex; align-items: center; gap: 10px; border: 0; border-radius: 999px; padding: 14px 22px; background: var(--ink); color: var(--bg); font: 600 15px "Inter Tight", sans-serif; cursor: pointer; white-space: nowrap; transition: transform .15s, background .2s; }
+    .talk:hover { transform: scale(1.02); }
+    .talk.live { background: var(--accent); color: #fff; }
+    .talk svg { width: 18px; height: 18px; }
+    .icon-btn { width: 44px; height: 44px; flex: none; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink); cursor: pointer; }
+    .icon-btn[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+    .icon-btn:disabled { opacity: .35; cursor: not-allowed; }
+    .icon-btn svg { width: 18px; height: 18px; }
+    form.type { flex: 1; display: flex; min-width: 0; }
+    form.type input { flex: 1; min-width: 0; border: 0; outline: none; background: transparent; color: var(--ink); font: 400 15px "Inter Tight", sans-serif; padding: 10px 8px; }
+    form.type input::placeholder { color: var(--ink-3); }
+    .meter { width: 54px; height: 22px; display: flex; gap: 3px; align-items: center; justify-content: center; flex: none; }
+    .meter i { width: 3px; border-radius: 2px; background: var(--you); height: 3px; transition: height .08s; }
+
+    .note { text-align: center; margin-top: 10px; }
+    .note a { color: inherit; }
+
+    @media (max-width: 860px) {
+      .app { padding: 0 16px; }
+      main { grid-template-columns: minmax(0, 1fr); gap: 24px; padding-top: 24px; }
+      .side { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 18px; }
+      .log { max-height: 42vh; }
+      .stage { align-items: center; text-align: center; }
+      .lede { margin-left: auto; margin-right: auto; }
+      .caption { margin: 0 auto; }
+      .brand .tag { display: none; }
+      .talk span.label-long { display: none; }
+      .meter { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <a class="brand" href="/">
+        <span class="logo">rp<i>.</i></span>
+        <span class="mono tag">Voice · A life in progress</span>
+      </a>
+      <div class="status mono" id="status" data-s="idle"><span class="dot"></span><span id="statusText">Offline</span></div>
+    </header>
+
+    <main>
+      <section class="stage">
+        <div class="mono eyebrow">Ask me anything</div>
+        <h1>Talk to <em>Rohit.</em></h1>
+        <p class="lede" id="lede">Product builder, filmmaker, IIT Bombay ’25. This is an AI version of me that speaks the way I do. Press the button and just talk; interrupt me whenever you like.</p>
+
+        <div class="orb-wrap" aria-hidden="true">
+          <canvas id="orb"></canvas>
+          <div class="portrait" id="portrait">
+            <span class="fallback">rp</span>
+            <img src="/assets/images/rohit-portrait-960.webp" alt="" onerror="this.remove()" />
+          </div>
+        </div>
+
+        <div class="caption" id="caption" aria-live="polite"><span class="muted">“What should we know about your life story?”</span></div>
+      </section>
+
+      <aside class="side">
+        <div class="side-head">
+          <span class="mono">Conversation</span>
+          <span class="mono" id="timer"></span>
+        </div>
+        <div class="log" id="log"><p class="empty">Your conversation will show up here.</p></div>
+        <div class="chips" id="chips"></div>
+      </aside>
+    </main>
+
+    <div class="dock">
+      <div class="dock-inner">
+        <button class="talk" id="talk" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+          <span id="talkLabel">Start <span class="label-long">talking</span></span>
+        </button>
+        <div class="meter" id="meter"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <button class="icon-btn" id="mute" type="button" aria-pressed="false" title="Mute mic" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 9v3a3 3 0 0 0 5.1 2.1M15 9.3V6a3 3 0 0 0-5.9-.7M5 11a7 7 0 0 0 11.2 5.6M19 11a7 7 0 0 1-.6 2.8M12 18v3M3 3l18 18"/></svg>
+        </button>
+        <form class="type" id="typeForm" autocomplete="off">
+          <input id="typeInput" placeholder="…or type a question" maxlength="500" />
+        </form>
+        <button class="icon-btn" id="send" type="submit" form="typeForm" title="Send">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+      <p class="mono note">AI voice of Rohit · answers may be imperfect · for the real thing, <a href="https://www.linkedin.com/in/rohitpachar/" target="_blank" rel="noopener">say hi on LinkedIn</a></p>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
